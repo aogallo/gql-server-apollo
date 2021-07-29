@@ -5,6 +5,8 @@ const { APP_SECRET, getUserId } = require('../utils');
 async function post(parent, args, context, info) {
   const { userId } = context;
 
+  console.log(`userId en el mutation post`, userId);
+
   const newLink = await context.prisma.link.create({
     data: {
       url: args.url,
@@ -22,10 +24,15 @@ async function signup(parent, args, context, info) {
   // 1
   const password = await bcrypt.hash(args.password, 10);
 
+  console.log(`password`, password);
+  console.log(`args`, args);
+
   // 2
   const user = await context.prisma.user.create({
     data: { ...args, password },
   });
+
+  console.log(`user`, user);
 
   // 3
   const token = jwt.sign({ userId: user.id }, APP_SECRET);

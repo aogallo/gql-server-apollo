@@ -26,7 +26,6 @@ let links = [
 ];
 
 // 1
-let idCount = links.length;
 const resolvers = {
   Query,
   Mutation,
@@ -55,5 +54,5 @@ server
     port: process.env.PORT || 4000,
   })
   .then(({ url }) => {
-    console.log(` Server ready at ${url} ${__dirname}`);
+    console.log(` Server ready at ${url} `);
   });

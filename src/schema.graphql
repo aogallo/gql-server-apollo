@@ -4,6 +4,7 @@ type Query {
 }
 
 type Feed {
+  id: ID!
   links: [Link!]!
   count: Int!
 }
@@ -15,12 +16,9 @@ type Mutation {
   vote(linkId: ID!): Vote
 }
 
-type Link {
-  id: ID!
-  description: String!
-  url: String!
-  postedBy: User
-  votes: [Vote!]!
+type Subscription {
+  newLink: Link
+  newVote: Vote
 }
 
 type AuthPayload {
@@ -35,9 +33,13 @@ type User {
   links: [Link!]!
 }
 
-type Subscription {
-  newLink: Link
-  newVote: Vote
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+  postedBy: User
+  votes: [Vote!]!
+  createdAt: DateTime!
 }
 
 type Vote {
@@ -56,3 +58,5 @@ enum Sort {
   asc
   desc
 }
+
+scalar DateTime
